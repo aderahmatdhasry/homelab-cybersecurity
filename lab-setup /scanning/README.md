@@ -145,19 +145,33 @@ Disable MultiViews if it is not required by the application.
 
 - Target: `192.168.128.2`
 - Service: FTP
-- Port: `21/tcp`
+- Port: `21`
 - Version: `vsFTPd 2.3.4`
-- Vulnerability: CVE-2011-2523
+- Vulnerability: `CVE-2011-2523`
 - Metasploit Module: `exploit/unix/ftp/vsftpd_234_backdoor`
 
 ### Validation
 
-The FTP banner was manually verified using Netcat:
+The FTP service was manually validated using Netcat.
 
-`220 (vsFTPd 2.3.4)`
+The vsFTPd 2.3.4 backdoor was triggered through the FTP service, resulting in a command shell being exposed on TCP port `6200`.
 
-The Metasploit `check` command then identified the target as appearing vulnerable based on the detected vsFTPd 2.3.4 banner.
+### Evidence
 
-### Assessment
+The obtained shell returned:
 
-The target is considered a strong candidate for further controlled exploitation testing within the isolated lab environment.
+- `whoami` → `root`
+- `id` → `uid=0(root) gid=0(root)`
+- `uname -a` → `Linux metasploitable 2.6.24-16-server ... i686 GNU/Linux`
+
+This confirms remote command execution with root privileges on the target.
+
+### Security Impact
+
+Successful exploitation provides remote command execution with root-level privileges.
+
+This could allow an attacker to fully compromise the vulnerable system.
+
+### Recommendation
+
+Upgrade or remove the vulnerable vsFTPd version and ensure vulnerable FTP services are not exposed to untrusted networks.
