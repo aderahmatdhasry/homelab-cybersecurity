@@ -100,3 +100,23 @@ Exposing database administration interfaces increases the attack surface. If aut
 ### Recommendation
 
 Restrict access to phpMyAdmin using network controls, authentication, or an allowlist of authorized hosts.
+
+
+## HTTP TRACE Method Enabled
+
+- Target: `http://192.168.128.2/`
+- Method: `TRACE`
+- Result: HTTP 200 OK
+- Content-Type: `message/http`
+
+### Finding
+
+The HTTP TRACE method is enabled on the Apache web server. The server reflects the HTTP request back to the client.
+
+### Security Impact
+
+An enabled TRACE method may increase the attack surface and has historically been associated with Cross-Site Tracing (XST) attacks.
+
+### Recommendation
+
+Disable the HTTP TRACE method unless it is explicitly required.
