@@ -120,3 +120,22 @@ An enabled TRACE method may increase the attack surface and has historically bee
 ### Recommendation
 
 Disable the HTTP TRACE method unless it is explicitly required.
+
+
+## Apache MultiViews Enabled
+
+- Target: `http://192.168.128.2/index`
+- Result: `/index` resolves to `index.php`
+- HTTP Status: 200 OK
+
+### Finding
+
+Apache MultiViews/content negotiation is enabled. A request to `/index` is resolved to `index.php`, as indicated by the `Content-Location`, `Vary`, and `TCN` response headers.
+
+### Security Impact
+
+MultiViews can make resource discovery easier by allowing requests without explicit file extensions to resolve to available resources.
+
+### Recommendation
+
+Disable MultiViews if it is not required by the application.
