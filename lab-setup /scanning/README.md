@@ -48,6 +48,21 @@
 
 The exposed `phpinfo()` page discloses detailed PHP and server configuration information.
 
+
+## Directory Indexing
+
+- Target: `http://192.168.128.2/doc/`
+- Result: Directory listing exposed
+- HTTP Status: 200 OK
+
+### Finding
+
+The `/doc/` directory allows directory listing, exposing the names of files and directories to unauthenticated users.
+
+### Security Impact
+
+Directory indexing can disclose information about installed packages, server components, and directory structure. This information may help an attacker fingerprint the system and identify potential attack surfaces.
+
 ### Security Impact
 
 An attacker can use the disclosed information to fingerprint the server and identify potential attack surface.
