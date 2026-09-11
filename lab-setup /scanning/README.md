@@ -81,3 +81,22 @@ The `/icons/` directory allows directory listing, exposing files and resources t
 The exposed directory primarily contains Apache default icon resources. While the direct impact is low, directory indexing can disclose server structure and should generally be disabled when not required.
 
 An attacker can use the disclosed information to fingerprint the server and identify potential attack surface.
+
+
+## phpMyAdmin Exposure
+
+- Target: `http://192.168.128.2/phpMyAdmin/`
+- Result: phpMyAdmin login interface exposed
+- HTTP Status: 200 OK
+
+### Finding
+
+The phpMyAdmin administrative interface is accessible through the web server and exposes a login interface to unauthenticated users.
+
+### Security Impact
+
+Exposing database administration interfaces increases the attack surface. If authentication or access controls are weak, an attacker may attempt to gain unauthorized access to the underlying database.
+
+### Recommendation
+
+Restrict access to phpMyAdmin using network controls, authentication, or an allowlist of authorized hosts.
