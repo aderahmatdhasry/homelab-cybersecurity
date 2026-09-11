@@ -44,8 +44,6 @@ The `/doc/` directory allows directory listing, exposing the names of files and 
 
 Directory indexing can disclose information about installed packages, server components, and directory structure. This information may help an attacker fingerprint the system and identify potential attack surfaces.
 
-### Security Impact
-
 
 ## Directory Indexing - /icons/
 
