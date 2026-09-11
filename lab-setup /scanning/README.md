@@ -139,3 +139,25 @@ MultiViews can make resource discovery easier by allowing requests without expli
 ### Recommendation
 
 Disable MultiViews if it is not required by the application.
+
+
+## vsFTPd 2.3.4 Vulnerability Validation
+
+- Target: `192.168.128.2`
+- Service: FTP
+- Port: `21/tcp`
+- Version: `vsFTPd 2.3.4`
+- Vulnerability: CVE-2011-2523
+- Metasploit Module: `exploit/unix/ftp/vsftpd_234_backdoor`
+
+### Validation
+
+The FTP banner was manually verified using Netcat:
+
+`220 (vsFTPd 2.3.4)`
+
+The Metasploit `check` command then identified the target as appearing vulnerable based on the detected vsFTPd 2.3.4 banner.
+
+### Assessment
+
+The target is considered a strong candidate for further controlled exploitation testing within the isolated lab environment.
