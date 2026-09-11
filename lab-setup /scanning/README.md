@@ -65,4 +65,19 @@ Directory indexing can disclose information about installed packages, server com
 
 ### Security Impact
 
+
+## Directory Indexing - /icons/
+
+- Target: `http://192.168.128.2/icons/`
+- Result: Directory listing exposed
+- HTTP Status: 200 OK
+
+### Finding
+
+The `/icons/` directory allows directory listing, exposing files and resources to unauthenticated users.
+
+### Security Impact
+
+The exposed directory primarily contains Apache default icon resources. While the direct impact is low, directory indexing can disclose server structure and should generally be disabled when not required.
+
 An attacker can use the disclosed information to fingerprint the server and identify potential attack surface.
